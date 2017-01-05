@@ -3,8 +3,8 @@
 #define NEAR
 
 #define WORD unsigned short
-#define DWORD unsigned long
-#define LONG long
+#define DWORD unsigned int
+#define LONG int
 
 
 

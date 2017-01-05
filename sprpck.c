@@ -160,7 +160,7 @@ int CountColors(BYTE *raw, int iw, int w, int h, BYTE *pColIndexes)
       if (*(pColIndexes+x) == '-')
         printf("-");
       else
-        printf("%hX",*(pColIndexes+x));
+        printf("%hhX",*(pColIndexes+x));
     printf("\n");
   }
   return nCount;	// DO, 1. Aug 1998: for auto-adjusting of # of sprite colors!

@@ -84,21 +84,21 @@ long ConvertBMP(BYTE * in,long in_size,int *in_w, int *in_h,int line)
            printf("BMP recognized!\n");
 
            printf("Bitmap file header:\n");
-           printf("filesize: %lu\n", inbmpfile->bfSize);
-           printf("offset to pixels: %lu\n", inbmpfile->bfOffBits);
+           printf("filesize: %iu\n", inbmpfile->bfSize);
+           printf("offset to pixels: %iu\n", inbmpfile->bfOffBits);
 
            printf("Bitmap info header:\n");
-           printf("linesize in pixels: %lu\n", inbmpinfo->bmiHeader.biSize);
-           printf("Width in pixels: %lu\n", inbmpinfo->bmiHeader.biWidth);
-           printf("Height in pixels: %lu\n", inbmpinfo->bmiHeader.biHeight);
+           printf("linesize in pixels: %iu\n", inbmpinfo->bmiHeader.biSize);
+           printf("Width in pixels: %iu\n", inbmpinfo->bmiHeader.biWidth);
+           printf("Height in pixels: %iu\n", inbmpinfo->bmiHeader.biHeight);
            printf("Planes: %u\n", inbmpinfo->bmiHeader.biPlanes);
            printf("BitCount: %u\n", inbmpinfo->bmiHeader.biBitCount);
-           printf("Compression: %lu (0 = BI_RGB, 1 = BI_RLE8, 2 = BI_RLE4)\n", inbmpinfo->bmiHeader.biCompression);
-           printf("SizeImage: %lu\n", inbmpinfo->bmiHeader.biSizeImage);
-           printf("XPelsPerMeter: %ld\n", inbmpinfo->bmiHeader.biXPelsPerMeter);
-           printf("YPelsPerMeter: %ld\n", inbmpinfo->bmiHeader.biYPelsPerMeter);
-           printf("ColorsUsed: %lu\n", inbmpinfo->bmiHeader.biClrUsed);
-           printf("ColorsImportant: %lu\n", inbmpinfo->bmiHeader.biClrImportant);
+           printf("Compression: %iu (0 = BI_RGB, 1 = BI_RLE8, 2 = BI_RLE4)\n", inbmpinfo->bmiHeader.biCompression);
+           printf("SizeImage: %iu\n", inbmpinfo->bmiHeader.biSizeImage);
+           printf("XPelsPerMeter: %id\n", inbmpinfo->bmiHeader.biXPelsPerMeter);
+           printf("YPelsPerMeter: %id\n", inbmpinfo->bmiHeader.biYPelsPerMeter);
+           printf("ColorsUsed: %iu\n", inbmpinfo->bmiHeader.biClrUsed);
+           printf("ColorsImportant: %iu\n", inbmpinfo->bmiHeader.biClrImportant);
            } // if (verbose)
 
         if (inbmpinfo->bmiHeader.biCompression != BI_RGB)
@@ -295,7 +295,7 @@ long ConvertBMP(BYTE * in,long in_size,int *in_w, int *in_h,int line)
        }
    else
        {
-       printf("BMP not detected!\nSize %ld, %ld\n", in_size, inbmpfile->bfSize);
+       printf("BMP not detected!\nSize %ld, %id\n", in_size, inbmpfile->bfSize);
        }
    free (inbmpfile);
    free (inbmpinfo);
@@ -315,8 +315,8 @@ long ConvertPCX(BYTE * in,long in_size,int *in_w, int *in_h,int line)
     long new_size;
     long save_insize = in_size;
 
-//    if ( *in != 10 || *(in+PCX_VERSION) != 5 || *(in+PCX_ENC) != 1)
-//      error(line,"No or unsupported PCX-file !\n");
+  if ( *in != 10 || *(in+PCX_VERSION) != 5 || *(in+PCX_ENC) != 1)
+      error(line,"No or unsupported PCX-file !\n");
 
     *in_w = org_w = BLINTEL(in,PCX_XMAX)-BLINTEL(in,PCX_XMIN) +1 ;
     *in_h = org_h = BLINTEL(in,PCX_YMAX)-BLINTEL(in,PCX_YMIN) +1 ;
